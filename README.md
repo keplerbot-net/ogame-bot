@@ -12,6 +12,12 @@
 
 Kepler takes over the repetitive side of OGame: mines and research, expeditions, raids, repatriation, and keeping your fleet out of reach when someone comes for it. It runs on Windows, Linux and macOS, or on a server we host for you. You can try it free for 7 days, no card needed.
 
+## See it in two minutes
+
+From creating your account to your first bot running: download, activation key, OGame account.
+
+<a href="https://youtu.be/YkQYClq3tAY"><img src="https://img.youtube.com/vi/YkQYClq3tAY/maxresdefault.jpg" alt="Install Kepler and start your first bot in 2 minutes" width="720"></a>
+
 ## What Kepler does
 
 ### Defence
