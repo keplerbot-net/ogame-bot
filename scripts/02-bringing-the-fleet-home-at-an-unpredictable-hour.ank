@@ -1,0 +1,38 @@
+// Bringing the fleet home at an unpredictable hour
+//
+// Half past three on the dot, every night, gets noticed. RangeCronExec draws
+// the time at random inside a window.
+//
+// Explained in full: https://keplerbot.net/en/scripts/examples#recettes--2-bringing-the-fleet-home-at-an-unpredictable-hour
+// Kepler OGame bot: https://keplerbot.net/en
+
+fmt = import("fmt")
+
+ORIGIN  = "1:224:8"               // ← yours
+SHELTER = "1:224:9"               // ← yours: a moon or planet of your own
+
+RangeCronExec("03:00:00", "03:45:00", "sheltering", func() {
+	c = GetCachedCelestial(ORIGIN)
+	fleet, err = GetShips(c.GetID())
+	if err != nil {
+		LogError("fleet unreadable:", err)
+		return
+	}
+
+	f = NewFleet()
+	f.SetOrigin(ORIGIN)
+	f.SetDestination(SHELTER)
+	f.SetSpeed(TEN_PERCENT)
+	f.SetMission(PARK)
+	f.SetAllShips()
+	f.SetAllResources()
+	sent, err = f.SendNow()
+	if err != nil {
+		LogError("sheltering refused:", err)
+		SendDiscord(DISCORD_WEBHOOK, "the fleet did not leave: " + fmt.Sprintf("%v", err))
+		return
+	}
+	LogInfo("fleet away, back at", sent.BackTime)
+})
+
+<-OnQuitCh                        // the script lives until you stop it

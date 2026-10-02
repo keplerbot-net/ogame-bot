@@ -1,0 +1,27 @@
+// Watching a target and recalling your fleet
+//
+// The two moments of a watch, in a single script.
+//
+// Explained in full: https://keplerbot.net/en/scripts/examples#recettes--5-watching-a-target-and-recalling-your-fleet
+// Kepler OGame bot: https://keplerbot.net/en
+
+fmt = import("fmt")
+
+PLAYER = "Xylo"                   // ← yours
+
+err = AddHunterTarget(PLAYER)
+if err != nil {
+	LogError("cannot put under watch:", err)
+	return
+}
+StartHunter()
+
+for {
+	e, seen = WaitHunterTargetActive(0)
+	if !seen {
+		break
+	}
+	text = fmt.Sprintf("%s is back (before: %d min)", e.PlayerName, e.PreviousActivity)
+	LogWarn(text)
+	SendDiscord(DISCORD_WEBHOOK, text)
+}

@@ -1,0 +1,26 @@
+// Answering a private message
+//
+// The chat channel wakes the script the second someone writes.
+//
+// Explained in full: https://keplerbot.net/en/scripts/examples#recettes--4-answering-a-private-message
+// Kepler OGame bot: https://keplerbot.net/en
+
+strings = import("strings")
+
+for {
+	m, seen = WaitChatMessage(0)
+	if !seen {
+		break
+	}
+	if !m.Private() {
+		continue                    // the alliance room is not for us
+	}
+
+	LogInfo(m.SenderName + " writes: " + m.Text)
+
+	if strings.Contains(strings.ToLower(m.Text), "gg") {
+		SendMessage(m.SenderID, "gg to you too")
+	} else {
+		SendDiscord(DISCORD_WEBHOOK, m.SenderName + ": " + m.Text)
+	}
+}

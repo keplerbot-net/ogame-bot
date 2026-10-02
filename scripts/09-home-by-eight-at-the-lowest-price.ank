@@ -1,0 +1,47 @@
+// Home by eight, at the lowest price
+//
+// A fleet save is thought of by its end. The backwards computation looks for
+// the slowest speed that still arrives on time — the cheapest in deuterium
+// among those you can still take.
+//
+// Explained in full: https://keplerbot.net/en/scripts/examples#recettes--9-home-by-eight-at-the-lowest-price
+// Kepler OGame bot: https://keplerbot.net/en
+
+fmt = import("fmt")
+
+ORIGIN = "1:64:8"                  // ← yours
+SHELTER = "1:64:9"                 // ← yours
+BACK   = "08:00:00"                // ← yours: everything home by then
+
+ships = NewShipsInfos()
+ships.Set(LARGECARGO, 20)
+
+speed, deut, when, err = LowestSpeed(BACK, ORIGIN, SHELTER, ships)
+if err != nil {
+	LogError("no speed gets home on time:", err)
+	return
+}
+LogInfo(fmt.Sprintf("leave at %s, %v%% speed, %d deuterium",
+	when.Format("15:04"), speed * 10, deut))
+
+<-ExecAtCh(when, func() {
+	// One slot stays with the Defender: it is the one that dodges.
+	slots = GetSlots()
+	if slots.Total - slots.InUse <= GetFleetSlotsReserved() {
+		LogWarn("no room left, leaving the Defender some air")
+		return
+	}
+	f = NewFleet()
+	f.SetOrigin(ORIGIN)
+	f.SetDestination(SHELTER)
+	f.SetMission(PARK)
+	f.SetSpeed(speed)
+	f.AddShips(LARGECARGO, 20)
+	f.SetAllResources()
+	fleet, err = f.SendNow()
+	if err != nil {
+		LogError("send:", err)
+		return
+	}
+	LogInfo("fleet away, flight", fleet.ID)
+})

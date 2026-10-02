@@ -1,0 +1,31 @@
+// Where to send to come home after you wake up
+//
+// When you have no moon to park on, you need a destination far enough for the
+// round trip to cover the night.
+//
+// Explained in full: https://keplerbot.net/en/scripts/examples#recettes--3-where-to-send-to-come-home-after-you-wake-up
+// Kepler OGame bot: https://keplerbot.net/en
+
+ORIGIN = "1:224:8"                // ← yours
+HOURS  = 7                        // ← yours: the length of your night
+
+c = GetCachedCelestial(ORIGIN)
+fleet, err = GetShips(c.GetID())
+if err != nil {
+	LogError("fleet unreadable:", err)
+	return
+}
+
+dest, secs, deut, err = FindDebrisFieldWithMinimumTravelTime(c.GetCoordinate(),
+	fleet, HOURS * 3600)
+if err != nil {
+	LogWarn("no debris field far enough:", err)
+	dest, secs, deut, err = FindEmptyPlanetWithMinimumTravelTime(c.GetCoordinate(),
+		fleet, HOURS * 3600)
+}
+if err != nil {
+	LogError("nothing far enough, widen the Scanner's area:", err)
+	return
+}
+
+Printf("%v: %.1f h outbound, %d deuterium", dest, secs / 3600, deut)

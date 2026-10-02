@@ -1,0 +1,29 @@
+// Handing the evening back to the player
+//
+// Farming stops at the hour you play, and resumes when you go to bed.
+//
+// Explained in full: https://keplerbot.net/en/scripts/examples#recettes--7-handing-the-evening-back-to-the-player
+// Kepler OGame bot: https://keplerbot.net/en
+
+EVENING_START = "20:00:00"        // ← yours
+EVENING_END   = "23:30:00"        // ← yours
+
+CronExec(EVENING_START, func() {
+	err = StopFarmingBot()
+	if err != nil {
+		LogError("farming could not stop:", err)
+		return
+	}
+	LogInfo("farming paused, the evening is yours")
+})
+
+CronExec(EVENING_END, func() {
+	err = StartFarmingBot()
+	if err != nil {
+		LogError("farming could not resume:", err)
+		return
+	}
+	LogInfo("farming resumed")
+})
+
+<-OnQuitCh

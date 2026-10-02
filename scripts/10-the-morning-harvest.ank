@@ -1,0 +1,28 @@
+// The morning harvest
+//
+// Chapters hand out resources for tasks already done. There is no reason not
+// to collect them, except that you have to remember every day.
+//
+// Explained in full: https://keplerbot.net/en/scripts/examples#recettes--10-the-morning-harvest
+// Kepler OGame bot: https://keplerbot.net/en
+
+CHAPTER = 4006                     // ← yours: read from the page's address
+BASE    = "1:64:8"                 // ← yours
+
+CronExec("@09h00", func() {
+	err = ChapterClaimAll(CHAPTER)
+	if err != nil {
+		LogWarn("chapter:", err)       // nothing to collect is not a failure
+	}
+
+	// Then gather: the base receives, everything else feeds it.
+	err = RepatriateSetAllDestinations(BASE)
+	if err != nil {
+		LogError("repatriation:", err)
+		return
+	}
+	err = RepatriateNow()
+	if err != nil { LogError("repatriation:", err) }
+})
+
+<-OnQuitCh

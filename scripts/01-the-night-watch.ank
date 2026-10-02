@@ -1,0 +1,29 @@
+// The night watch
+//
+// It waits for an attack, warns on Discord, and stays quiet the rest of the
+// time. No request to the game while nothing happens.
+//
+// Explained in full: https://keplerbot.net/en/scripts/examples#recettes--1-the-night-watch
+// Kepler OGame bot: https://keplerbot.net/en
+
+fmt = import("fmt")
+
+THRESHOLD_SECONDS = 900           // ← yours: alert under fifteen minutes
+
+LogInfo("night watch in place")
+
+for {
+	a, seen = WaitAttack(0)        // 0: wait with no limit
+	if !seen {
+		break                       // the script is stopping, leave cleanly
+	}
+
+	text = fmt.Sprintf("%s is attacking %s, impact in %.0f min",
+		a.AttackerName, a.DestinationName, a.ArriveIn / 60)
+	LogWarn(text)
+	SendDiscord(DISCORD_WEBHOOK, text)
+
+	if a.ArriveIn < THRESHOLD_SECONDS {
+		SendTelegram(0, "URGENT: " + text)
+	}
+}

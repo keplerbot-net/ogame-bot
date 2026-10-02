@@ -1,0 +1,32 @@
+// The conductor
+//
+// A script runs end to end in a single thread: the night watch and the morning
+// report cannot live in the same one. This one does not act on the game — it
+// turns the others on and off.
+//
+// Explained in full: https://keplerbot.net/en/scripts/examples#recettes--8-the-conductor
+// Kepler OGame bot: https://keplerbot.net/en
+
+WATCH  = "night-watch"             // ← yours: the names of your scripts
+REPORT = "report"
+
+CronExec("@22h00", func() {
+	if IsScriptRunning(WATCH) {
+		LogInfo("the watch is already running")
+		return
+	}
+	err = StartScript(WATCH)
+	if err != nil { LogError("watch:", err) }
+})
+
+CronExec("@08h00", func() {
+	// "Paused" is not "stopped": resuming keeps the progress, starting
+	// again goes back to the first line.
+	if IsPausedScript(WATCH) {
+		ResumeScript(WATCH)
+	}
+	StopScript(WATCH)
+	StartScript(REPORT)
+})
+
+<-OnQuitCh
