@@ -113,6 +113,28 @@ Using an AI assistant (Claude, ChatGPT, Cursor, Copilot)? Plug it into the [Kepl
 
 Ten complete scripts to start from are in the [`scripts`](scripts) folder.
 
+## FAQ
+
+**Can my account get banned?**
+It can. Automating an account is against the OGame rules, and no tool can rule out a sanction. What Kepler does is avoid behaving like a script: requests spaced out, working hours that follow yours, delays that vary, a browser fingerprint of its own for each bot and, on the hosted plan, a dedicated IP address per account. The default settings are the safe ones: keep them human-paced.
+
+**Do my OGame credentials reach your servers?**
+Not with the version you run yourself. The bot logs in to Gameforge straight from your machine, and your password is stored encrypted (AES-256-GCM) in its data folder. It is never displayed and never written to a log. All Kepler receives from your bot is your licence key, a machine identifier, the bot version and your plan. On the hosted plan, your credentials sit on our servers, encrypted the same way. The [security page](https://keplerbot.net/en/security) has the details.
+
+**What if your website goes down?**
+Your bots keep running. The licence is checked on your own machine, and the bot only contacts us to renew it, with several days of margin.
+
+**Do I have to leave my computer on?**
+For the version you run yourself, yes: the bot runs as long as the computer does. The hosted plan runs on our servers, day and night.
+
+**Can I run several accounts or universes?**
+Yes: one bot per OGame account, as many as your licence covers, each with its own settings and its own fingerprint.
+
+**How do I stop it?**
+Close its console or terminal window. Nothing is installed, nothing starts with your system, and no background service stays behind.
+
+More questions on the [FAQ page](https://keplerbot.net/en/faq).
+
 ## About this repository
 
 This repository presents Kepler and holds example scripts. It contains no source code of the bot. Downloads are on the [official download page](https://keplerbot.net/en/download), with a checksum for every file.

@@ -113,6 +113,28 @@ Vous écrivez avec un assistant IA (Claude, ChatGPT, Cursor, Copilot) ? Branchez
 
 Dix scripts complets pour démarrer sont dans le dossier [`scripts`](scripts) (en anglais).
 
+## FAQ
+
+**Mon compte peut-il être banni ?**
+Oui, c'est possible. Automatiser un compte est contraire aux règles d'OGame, et aucun outil ne peut exclure une sanction. Ce que fait Kepler, c'est ne pas se comporter comme un script : des requêtes espacées, des heures de travail qui suivent les vôtres, des délais qui varient, une empreinte de navigateur propre à chaque bot et, en version hébergée, une adresse IP dédiée par compte. Les réglages par défaut sont les plus sûrs : gardez un rythme humain.
+
+**Mes identifiants OGame arrivent-ils chez vous ?**
+Pas avec la version que vous faites tourner vous-même. Le bot se connecte à Gameforge directement depuis votre machine, et votre mot de passe est rangé chiffré (AES-256-GCM) dans son dossier de données. Il n'est jamais affiché ni écrit dans un journal. Kepler ne reçoit de votre bot que votre clé de licence, un identifiant de machine, la version du bot et votre offre. En version hébergée, vos identifiants sont sur nos serveurs, chiffrés de la même façon. La [page Sécurité](https://keplerbot.net/securite) donne le détail.
+
+**Et si votre site tombe en panne ?**
+Vos bots continuent de tourner. La licence se vérifie sur votre propre machine, et le bot ne nous contacte que pour la renouveler, avec plusieurs jours de marge.
+
+**Dois-je laisser mon ordinateur allumé ?**
+Pour la version que vous faites tourner vous-même, oui : le bot tourne tant que l'ordinateur tourne. La version hébergée tourne sur nos serveurs, jour et nuit.
+
+**Puis-je faire tourner plusieurs comptes ou univers ?**
+Oui : un bot par compte OGame, autant que votre licence en couvre, chacun avec ses réglages et sa propre empreinte.
+
+**Comment tout arrêter ?**
+Fermez sa console ou son terminal. Rien n'est installé, rien ne démarre avec le système, aucun service ne reste en arrière-plan.
+
+D'autres questions sur la [page FAQ](https://keplerbot.net/faq).
+
 ## À propos de ce dépôt
 
 Ce dépôt présente Kepler et contient des exemples de scripts. Il ne contient aucun code source du bot. Les téléchargements sont sur la [page officielle](https://keplerbot.net/telecharger), avec l'empreinte de chaque fichier.
