@@ -143,6 +143,8 @@ D'autres questions sur la [page FAQ](https://keplerbot.net/faq).
 
 ## À propos de ce dépôt
 
+Le site officiel est [keplerbot.net](https://keplerbot.net/). Ce que fait un [bot OGame](https://keplerbot.net/bot-ogame) et comment le choisir : le guide est sur le site.
+
 Ce dépôt présente Kepler et contient des exemples de scripts. Il ne contient aucun code source du bot. Les téléchargements sont sur la [page officielle](https://keplerbot.net/telecharger), avec l'empreinte de chaque fichier.
 
 Kepler est un outil indépendant, sans lien avec Gameforge ni approbation de sa part. Automatiser votre compte peut être contraire aux conditions d'utilisation d'OGame, et le risque est le vôtre. OGame et Gameforge sont des marques de leurs propriétaires respectifs.
