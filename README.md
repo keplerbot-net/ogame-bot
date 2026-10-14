@@ -5,7 +5,7 @@
 <p align="center"><b>Your OGame account, played for you by a bot built by long-time players.</b></p>
 
 <p align="center">
-  <a href="https://keplerbot.net/en">Website</a> · <a href="https://keplerbot.net/en/download">Download</a> · <a href="https://keplerbot.net/en/pricing">Pricing</a> · <a href="https://keplerbot.net/en/features">Features</a> · <a href="https://keplerbot.net/en/scripts">Scripting docs</a> · <a href="https://keplerbot.net/en/faq">FAQ</a>
+  <a href="https://keplerbot.net/en/">Website</a> · <a href="https://keplerbot.net/en/download">Download</a> · <a href="https://keplerbot.net/en/pricing">Pricing</a> · <a href="https://keplerbot.net/en/features">Features</a> · <a href="https://keplerbot.net/en/scripts">Scripting docs</a> · <a href="https://keplerbot.net/en/faq">FAQ</a>
 </p>
 
 <p align="center">English · <a href="README.fr.md">Français</a></p>
@@ -142,6 +142,8 @@ Close its console or terminal window. Nothing is installed, nothing starts with 
 More questions on the [FAQ page](https://keplerbot.net/en/faq).
 
 ## About this repository
+
+The official website is [keplerbot.net](https://keplerbot.net/en/). For what an [OGame bot](https://keplerbot.net/en/ogame-bot) does and how to choose one, read the guide on the site.
 
 This repository presents Kepler and holds example scripts. It contains no source code of the bot. Downloads are on the [official download page](https://keplerbot.net/en/download), with a checksum for every file.
 
